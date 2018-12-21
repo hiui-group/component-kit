@@ -34,6 +34,10 @@
       vertical-align: middle;
     }
   }
+
+  &__actions {
+    margin-top: $spacer-4;
+  }
 }
 
 .block-filter-field {
