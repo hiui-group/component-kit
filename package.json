@@ -1,6 +1,6 @@
 {
   "name": "@hi-ui/component-kit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "index.js",
   "module": "es/index.js",
   "file": [
@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "@hi-ui/core-css": "^1.0.0",
-    "@hi-ui/hiui": "^1.2.1-beta.1",
+    "@hi-ui/hiui": "^1.2.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "node-sass": "^4.9.3",
