@@ -265,10 +265,9 @@ export default class ConditionFilterTool extends Component {
             {this.renderFilters()}
           </div>
         }
-        <Button type='primary' appearance='link' className='block-filter-condition__add' onClick={this.addFilter.bind(this)}>
-          <Icon name='plus' />
-          增加条件
-        </Button>
+        <a className='block-filter-condition__add' href='javascript: void(0)' onClick={this.addFilter.bind(this)}>
+          <Icon name='plus' />增加条件
+        </a>
       </div>
     )
   }
