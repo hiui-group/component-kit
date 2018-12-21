@@ -274,7 +274,7 @@ export default class DataFilter extends Component {
                   }
                   {
                     tool.type === 'filter' && filters.length > 0 &&
-                    <span className='block-filter-tool__badge'>{filters.length}</span>
+                    <span className='block-filter-tool__badge'>({filters.length})</span>
                   }
                 </div>
                 {
