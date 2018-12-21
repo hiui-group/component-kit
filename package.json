@@ -9,8 +9,8 @@
     "es"
   ],
   "dependencies": {
-    "@hi-ui/hiui": "^1.2.0-beta.2",
     "@hi-ui/core-css": "^1.0.0",
+    "@hi-ui/hiui": "^1.2.1-beta.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "node-sass": "^4.9.3",
