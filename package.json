@@ -1,6 +1,6 @@
 {
   "name": "@hi-ui/component-kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "module": "es/index.js",
   "file": [

@@ -4,6 +4,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: $spacer-6;
 
   // Filter actions
   &__actions {
@@ -21,7 +22,6 @@
   // Filter tools
   &__tools {
     display: flex;
-    margin-bottom: $spacer-6;
     //padding-left: $spacer-2;
     //padding-right: $spacer-2;
     color: get-color($palette-hiui, 'g100');
@@ -65,12 +65,9 @@
       margin-right: $spacer-6;
     }
 
-    .block-filter {
-      margin-bottom: 0;
-    }
-
     .block-filter__form {
       flex: auto;
+      margin-bottom: 0;
     }
 
     .block-data {
