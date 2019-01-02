@@ -1,7 +1,6 @@
 {
   "name": "@hi-ui/component-kit",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.3.0",
   "main": "index.js",
   "module": "es/index.js",
   "file": [
@@ -10,7 +9,7 @@
   ],
   "dependencies": {
     "@hi-ui/core-css": "^1.0.0",
-    "@hi-ui/hiui": "^1.2.1-beta.1",
+    "@hi-ui/hiui": "^1.2.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "node-sass": "^4.9.3",
@@ -20,15 +19,15 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
+    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss'",
+    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss' --fix",
     "compile": "cross-env NODE_ENV=production gulp"
   },
   "standard": {
     "parser": "babel-eslint",
     "ignore": [
-      "/es/",
-      "/lib/",
       "/dist/",
-      "/libs/markdown/code.js",
+      "/es/",
       "yarn.lock"
     ]
   },

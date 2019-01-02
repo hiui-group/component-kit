@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Icon from '@hi-ui/hiui/es/icon'
 import Select from '@hi-ui/hiui/es/select'
 import Input from '@hi-ui/hiui/es/input'
-import Button from '@hi-ui/hiui/es/button'
 
 export default class ConditionFilterTool extends Component {
   matchFuncs = {
@@ -265,10 +264,9 @@ export default class ConditionFilterTool extends Component {
             {this.renderFilters()}
           </div>
         }
-        <Button type='primary' appearance='link' className='block-filter-condition__add' onClick={this.addFilter.bind(this)}>
-          <Icon name='plus' />
-          增加条件
-        </Button>
+        <a className='block-filter-condition__add' href='javascript: void(0)' onClick={this.addFilter.bind(this)}>
+          <Icon name='plus' />增加条件
+        </a>
       </div>
     )
   }

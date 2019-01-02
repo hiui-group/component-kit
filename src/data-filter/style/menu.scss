@@ -2,7 +2,7 @@
 
 .block-filter-tool__menu {
   min-width: 120px;
-  padding: $spacer-3;
+  padding: $spacer-4 $spacer-6;
   overflow: auto;
 
   &--condition {
@@ -20,7 +20,9 @@
 }
 
 .block-filter-tool__menu-item {
-  margin: $spacer-1 0;
+  & + & {
+    margin-top: $spacer-2;
+  }
 }
 
 // Condition filter tool
@@ -44,8 +46,14 @@
   }
 
   &__add {
+    color: get-color($palette-hiui, 'g100');
+
+    &:hover,
+    &:active {
+      color: get-color($palette-hiui, '50');
+    }
+
     .hi-icon {
-      margin-left: $spacer-1 * -1;
       margin-right: $spacer-1;
     }
   }

@@ -4,11 +4,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-
-  &__title {
-    font-size: $font-size-large;
-    color: #4a4a4a;
-  }
+  margin-bottom: $spacer-6;
 
   // Filter actions
   &__actions {
@@ -32,7 +28,7 @@
   }
 
   &__form {
-    margin-bottom: $spacer-4;
+    margin-bottom: $spacer-6;
   }
 }
 
@@ -69,12 +65,9 @@
       margin-right: $spacer-6;
     }
 
-    .block-filter {
-      margin-bottom: 0;
-    }
-
     .block-filter__form {
       flex: auto;
+      margin-bottom: 0;
     }
 
     .block-data {
