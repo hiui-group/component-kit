@@ -54,8 +54,16 @@ export default class DataFilter extends Component {
   }
 
   static propTypes = {
+    url: PropTypes.string,
+    onFetched: PropTypes.func,
+    fetchDatas: PropTypes.func,
+    table: PropTypes.object,
+    params: PropTypes.object,
+    columnMixins: PropTypes.object,
     canSubmit: PropTypes.bool,
     actions: PropTypes.array,
+    activeTools: PropTypes.array,
+    tools: PropTypes.array,
     vertical: PropTypes.bool,
     verticalWidth: PropTypes.string
   }
@@ -68,7 +76,11 @@ export default class DataFilter extends Component {
     columnMixins: [],
     columns: [],
     vertical: false,
-    verticalWidth: 'auto'
+    verticalWidth: 'auto',
+    table: {
+      pageSize: 10
+    },
+    onFetched: () => {}
   }
 
   constructor (props) {
@@ -132,7 +144,9 @@ export default class DataFilter extends Component {
   fetchDatas (props, forms = {}) {
     const {
       params,
-      url
+      url,
+      onFetched,
+      fetchDatas
     } = props
     const {
       page
@@ -142,34 +156,44 @@ export default class DataFilter extends Component {
       this.forms = forms
     }
 
-    axios.get(url, {
-      params: {
-        page,
-        ...params,
-        ...this.forms
-      }
-    }).then(ret => {
-      if (ret && ret.data.code === 200) {
-        const data = ret.data.data
-        const state = {
-          datas: data.data,
-          filteredDatas: data.data,
-          page: parseInt(data.pageInfo.page),
-          total: parseInt(data.pageInfo.total),
-          pageSize: parseInt(data.pageInfo.pageSize),
-          filters: []
+    if (fetchDatas) { // 存在fetchDatas，则使用方对数据处理，返回promise
+      fetchDatas({page}).then(datas => {
+        this.setDatas(datas)
+      })
+    } else {
+      axios.get(url, {
+        params: {
+          page,
+          ...params,
+          ...this.forms
         }
-
-        if (data.columns) {
-          this.mixinColumns(data.columns, true)
-          const filteredColumns = this.filterColumns()
-
-          this.setState({ filteredColumns, ...state })
-        } else {
-          this.setState(state)
+      }).then(ret => {
+        onFetched(ret)
+        if (ret && ret.data.code === 200) {
+          this.setDatas(ret.data.data)
         }
-      }
-    })
+      })
+    }
+  }
+
+  setDatas(data) {
+    const state = {
+      datas: data.data,
+      filteredDatas: data.data,
+      page: parseInt(data.pageInfo.page),
+      total: parseInt(data.pageInfo.total),
+      pageSize: parseInt(data.pageInfo.pageSize),
+      filters: []
+    }
+
+    if (data.columns) {
+      this.mixinColumns(data.columns, true)
+      const filteredColumns = this.filterColumns()
+
+      this.setState({ filteredColumns, ...state })
+    } else {
+      this.setState(state)
+    }
   }
 
   mixinColumns (columns, updateState = false) {
@@ -360,7 +384,6 @@ export default class DataFilter extends Component {
     } = this.state
     const {
       table,
-      params,
       vertical,
       verticalWidth
     } = this.props
@@ -372,7 +395,7 @@ export default class DataFilter extends Component {
 
     if (filters.length === 0) { // 有筛选时隐藏分页
       tableProps.pagination = {
-        pageSize: params.pageSize,
+        pageSize: table.pageSize,
         total: total,
         page: page,
         onChange: page => {
