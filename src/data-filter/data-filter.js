@@ -157,7 +157,7 @@ export default class DataFilter extends Component {
     }
 
     if (fetchDatas) { // 存在fetchDatas，则使用方对数据处理，返回promise
-      fetchDatas({page}).then(datas => {
+      fetchDatas({ page }).then(datas => {
         this.setDatas(datas)
       })
     } else {
@@ -176,7 +176,7 @@ export default class DataFilter extends Component {
     }
   }
 
-  setDatas(data) {
+  setDatas (data) {
     const state = {
       datas: data.data,
       filteredDatas: data.data,
