@@ -80,7 +80,12 @@ export default class DataFilter extends Component {
     table: {
       pageSize: 10
     },
-    onFetched: () => {}
+    onFetched: res => {
+      if (res && res.data.code === 200) {
+        return res.data.data
+      }
+      return false
+    }
   }
 
   constructor (props) {
@@ -167,10 +172,10 @@ export default class DataFilter extends Component {
           ...params,
           ...this.forms
         }
-      }).then(ret => {
-        onFetched(ret)
-        if (ret && ret.data.code === 200) {
-          this.setDatas(ret.data.data)
+      }).then(res => {
+        const ret = onFetched(res)
+        if (ret !== false) {
+          this.setDatas(res.data.data)
         }
       })
     }
