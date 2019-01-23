@@ -1,12 +1,17 @@
 {
   "name": "@hi-ui/component-kit",
-  "version": "0.4.0",
+  "version": "0.5.2",
   "main": "index.js",
   "module": "es/index.js",
   "file": [
     "dist",
     "es"
   ],
+  "scripts": {
+    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss'",
+    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss' --fix",
+    "compile": "cross-env NODE_ENV=production gulp"
+  },
   "dependencies": {
     "@hi-ui/core-css": "^1.0.0",
     "axios": "^0.18.0",
@@ -14,32 +19,10 @@
     "node-sass": "^4.9.3",
     "postcss-loader": "^2.1.5",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-dom": "^16.6.3"
   },
   "devDependencies": {
-    "@hi-ui/hiui": "^1.3.0-beta.4"
-  },
-  "scripts": {
-    "test": "node_modules/.bin/standard && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss'",
-    "fix": "node_modules/.bin/standard --fix && node_modules/.bin/stylelint --config .stylelintrc 'components/**/*.scss' --fix",
-    "compile": "cross-env NODE_ENV=production gulp"
-  },
-  "standard": {
-    "parser": "babel-eslint",
-    "ignore": [
-      "/dist/",
-      "/es/",
-      "yarn.lock"
-    ]
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
+    "@hi-ui/hiui": "^1.3.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
@@ -60,6 +43,21 @@
     "stylelint": "^9.9.0",
     "stylelint-config-recommended-scss": "^3.2.0",
     "stylelint-config-standard": "^18.2.0",
-    "stylelint-scss": "^3.4.0"
-  }
+    "stylelint-scss": "^3.4.0",
+    "react-scripts": "2.1.1"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "/dist/",
+      "/es/",
+      "yarn.lock"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
