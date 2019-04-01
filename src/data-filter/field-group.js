@@ -28,7 +28,7 @@ export default class FieldGroup extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     if (nextProps.id !== this.props.id) { // id 每个FieldGroup标识，改变时清空fields，并且强制渲染children
       this.resetFields()
     }
@@ -39,8 +39,8 @@ export default class FieldGroup extends Component {
       component: this
     }
   }
-  
-  resetFields() {
+
+  resetFields () {
     this.setState({
       advancedFields: [],
       fields: []
