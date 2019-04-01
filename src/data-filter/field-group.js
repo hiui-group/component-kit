@@ -6,11 +6,13 @@ import Button from '@hi-ui/hiui/es/button'
 
 export default class FieldGroup extends Component {
   static propTypes = {
-    main: PropTypes.bool
+    main: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   }
 
   static defaultProps = {
-    main: false
+    main: false,
+    id: 0
   }
 
   fieldsCache = []
@@ -26,10 +28,23 @@ export default class FieldGroup extends Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.id !== this.props.id) { // id 每个FieldGroup标识，改变时清空fields，并且强制渲染children
+      this.resetFields()
+    }
+  }
+
   getChildContext () {
     return {
       component: this
     }
+  }
+
+  resetFields () {
+    this.setState({
+      advancedFields: [],
+      fields: []
+    })
   }
 
   addField (fieldName, advanced) {
@@ -77,7 +92,8 @@ export default class FieldGroup extends Component {
   render () {
     const {
       children,
-      main
+      main,
+      id
     } = this.props
     const {
       showModal,
@@ -88,7 +104,7 @@ export default class FieldGroup extends Component {
     return (
       <React.Fragment>
         <div className='block-filter-form__group'>
-          <div className='block-filter-form__fields'>
+          <div className='block-filter-form__fields' key={id}>
             {children}
           </div>
         </div>
