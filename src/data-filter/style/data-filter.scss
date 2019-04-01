@@ -4,7 +4,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: $spacer-6;
+  margin-bottom: $spacer-2;
 
   // Filter actions
   &__actions {
@@ -28,7 +28,7 @@
   }
 
   &__form {
-    margin-bottom: $spacer-6;
+    margin-bottom: $spacer-2;
   }
 }
 
