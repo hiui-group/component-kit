@@ -402,7 +402,7 @@ export default class DataFilter extends Component {
       tableProps.pagination = {
         pageSize: table.pageSize,
         total: total,
-        page: page,
+        defaultCurrent: page,
         onChange: page => {
           this.setState({ page: page }, () => {
             this.fetchDatas(this.props)
