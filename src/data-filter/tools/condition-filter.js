@@ -133,7 +133,7 @@ export default class ConditionFilterTool extends Component {
           <Select
             clearable={false}
             style={{ width: '150px' }}
-            list={options}
+            data={options}
             value={filter.column}
             onChange={value => this.changeColumn(value, index)}
           />
@@ -164,7 +164,7 @@ export default class ConditionFilterTool extends Component {
         <Select
           clearable={false}
           style={{ width: '120px' }}
-          list={options}
+          data={options}
           value={operator}
           onChange={value => this.changeOperator(value, index)}
         />

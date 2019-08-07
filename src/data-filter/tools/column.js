@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Checkbox from '@hi-ui/hiui/es/checkbox'
+import { Checkbox } from '@hi-ui/hiui'
 
 export default class ColumnTool extends Component {
   parent () {

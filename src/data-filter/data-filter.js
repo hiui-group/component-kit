@@ -401,7 +401,7 @@ export default class DataFilter extends Component {
       tableProps.pagination = {
         pageSize: table.pageSize,
         total: total,
-        defaultCurrent: page,
+        current: page,
         onChange: page => {
           this.setState({ page: page }, () => {
             this.fetchDatas(this.props)

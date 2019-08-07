@@ -113,8 +113,7 @@ export default class FieldGroup extends Component {
           main &&
           <Modal
             title='管理'
-            show={showModal}
-            backDrop
+            visible={showModal}
             width='720px'
             onConfirm={() => {
               this.setState({
