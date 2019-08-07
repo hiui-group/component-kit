@@ -19,8 +19,6 @@ function transformSass (sassFile, config = {}) {
         data: data,
         outputStyle: 'compressed'
       }, function (error, result) {
-        // console.log(result.css)
-        // console.log(result.css.toString(), 'this is result')
         if (!error) {
           const css = postcss(postcssConfig.plugins).process(result.css.toString()).then(r => r.css)
           resolve(css)

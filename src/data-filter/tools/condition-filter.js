@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Icon from '@hi-ui/hiui/es/icon'
-import Select from '@hi-ui/hiui/es/select'
-import Input from '@hi-ui/hiui/es/input'
+import { Icon, Select, Input } from '@hi-ui/hiui'
 
 export default class ConditionFilterTool extends Component {
   matchFuncs = {
@@ -81,8 +79,6 @@ export default class ConditionFilterTool extends Component {
       const compareValue = filter.value
       const operator = filter.operator
 
-      console.log('----------matchFilter', value, operator, compareValue)
-
       return this.matchFuncs[operator](value, compareValue)
     }
 
@@ -98,20 +94,14 @@ export default class ConditionFilterTool extends Component {
   }
 
   changeColumn (value, index) {
-    console.log('------------changeColumn', value, index)
-
     this.updateFilter(index, { column: value[0].id, type: value[0].type, operator: '' })
   }
 
   changeOperator (value, index) {
-    console.log('------------changeOperator', value, index)
-
     this.updateFilter(index, { operator: value[0].id })
   }
 
   changeValue (value, index) {
-    console.log('------------changeValue', value, index)
-
     this.updateFilter(index, { value: value })
   }
 
@@ -168,7 +158,6 @@ export default class ConditionFilterTool extends Component {
     } else {
       options = this.getOperators(type)
     }
-    console.log('--------renderOperator', options)
 
     return (
       <div className='block-filter-condition__operator'>
