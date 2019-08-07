@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@hi-ui/hiui/es/button'
-import Input from '@hi-ui/hiui/es/input'
+import { Button, Input } from '@hi-ui/hiui'
 
 export default class SearchAction extends Component {
   constructor (props) {
@@ -52,7 +51,7 @@ export default class SearchAction extends Component {
             <Input
               value={value}
               placeholder='搜索关键词'
-              style={{ width: '150px' }}
+              style={{ width: 150 }}
               onChange={e => {
                 this.setState({ value: e.target.value })
               }}

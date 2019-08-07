@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Button from '@hi-ui/hiui/es/button'
+import { Button } from '@hi-ui/hiui'
 import '../style/query.scss'
 
 export default class QueryTool extends Component {

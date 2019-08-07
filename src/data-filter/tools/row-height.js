@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Radio from '@hi-ui/hiui/es/radio'
+import { Radio } from '@hi-ui/hiui'
 
 export default class RowHeightTool extends Component {
   constructor (props) {
@@ -47,6 +47,7 @@ export default class RowHeightTool extends Component {
     return (
       <div className='block-filter-tool__menu block-filter-tool__menu--row-height'>
         <Radio
+          legacy
           list={list}
           layout='vertical'
           onChange={val => {

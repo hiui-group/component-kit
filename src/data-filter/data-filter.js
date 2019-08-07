@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import axios from 'axios'
-import Table from '@hi-ui/hiui/es/table'
-import Icon from '@hi-ui/hiui/es/icon'
+import { Table, Icon } from '@hi-ui/hiui/es'
 import SearchAction from './actions/search'
 import QueryTool from './tools/query'
 import ConditionFilterTool from './tools/condition-filter'
@@ -402,7 +401,7 @@ export default class DataFilter extends Component {
       tableProps.pagination = {
         pageSize: table.pageSize,
         total: total,
-        page: page,
+        current: page,
         onChange: page => {
           this.setState({ page: page }, () => {
             this.fetchDatas(this.props)
