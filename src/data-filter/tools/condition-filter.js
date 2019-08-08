@@ -4,14 +4,14 @@ import { Icon, Select, Input } from '@hi-ui/hiui'
 
 export default class ConditionFilterTool extends Component {
   matchFuncs = {
-    'gt': (value, compareValue) => value > compareValue,
-    'gte': (value, compareValue) => value >= compareValue,
-    'lt': (value, compareValue) => value < compareValue,
-    'lte': (value, compareValue) => value <= compareValue,
-    'eq': (value, compareValue) => value === compareValue,
-    'include': (value, compareValue) => value.indexOf(compareValue) > -1,
-    'exclude': (value, compareValue) => value.indexOf(compareValue) === -1,
-    'empty': value => !value,
+    gt: (value, compareValue) => value > compareValue,
+    gte: (value, compareValue) => value >= compareValue,
+    lt: (value, compareValue) => value < compareValue,
+    lte: (value, compareValue) => value <= compareValue,
+    eq: (value, compareValue) => value === compareValue,
+    include: (value, compareValue) => value.indexOf(compareValue) > -1,
+    exclude: (value, compareValue) => value.indexOf(compareValue) === -1,
+    empty: value => !value,
     'no-empty': value => !!value
   }
 
@@ -39,15 +39,18 @@ export default class ConditionFilterTool extends Component {
 
     filters.splice(index, 1)
 
-    this.parent().setState({
-      filters
-    }, () => {
-      this.filterDatas(filters)
-    })
+    this.parent().setState(
+      {
+        filters
+      },
+      () => {
+        this.filterDatas(filters)
+      }
+    )
   }
 
   updateFilter (index, options) {
-    const filters = [ ...this.parent().state.filters ]
+    const filters = [...this.parent().state.filters]
 
     filters[index] = Object.assign({}, filters[index], options)
     this.parent().setState({ filters }, () => {
@@ -86,7 +89,7 @@ export default class ConditionFilterTool extends Component {
   }
 
   needValue (operator, value) {
-    if ([ 'empty', 'no-empty' ].indexOf(operator) > -1) {
+    if (['empty', 'no-empty'].indexOf(operator) > -1) {
       return true
     } else {
       return !!value
@@ -94,11 +97,11 @@ export default class ConditionFilterTool extends Component {
   }
 
   changeColumn (value, index) {
-    this.updateFilter(index, { column: value[0].id, type: value[0].type, operator: '' })
+    this.updateFilter(index, { column: value.id, type: value.type, operator: '' })
   }
 
   changeOperator (value, index) {
-    this.updateFilter(index, { operator: value[0].id })
+    this.updateFilter(index, { operator: value.id })
   }
 
   changeValue (value, index) {
@@ -109,11 +112,12 @@ export default class ConditionFilterTool extends Component {
     const options = []
 
     columns.map(column => {
-      column.type && options.push({
-        name: column.title,
-        id: column.dataIndex,
-        type: column.type
-      })
+      column.type &&
+        options.push({
+          title: column.title,
+          id: column.dataIndex,
+          type: column.type
+        })
     })
 
     return options
@@ -121,10 +125,7 @@ export default class ConditionFilterTool extends Component {
 
   renderFilters () {
     const parent = this.parent()
-    const {
-      columns,
-      filters
-    } = parent.state
+    const { columns, filters } = parent.state
     const options = this.getColumnOptions(columns)
 
     return filters.map((filter, index) => (
@@ -135,15 +136,18 @@ export default class ConditionFilterTool extends Component {
             style={{ width: '150px' }}
             data={options}
             value={filter.column}
-            onChange={value => this.changeColumn(value, index)}
+            onChange={(selectedItems, changedItem) => this.changeColumn(changedItem, index)}
           />
         </div>
-        { this.renderOperator(filter.type, filter.operator, index) }
-        { this.renderValue(filter.type, filter.operator, filter.value, index) }
-        <div className='block-filter-condition__delete' onClick={e => {
-          e.stopPropagation()
-          this.deleteFilter(index)
-        }}>
+        {this.renderOperator(filter.type, filter.operator, index)}
+        {this.renderValue(filter.type, filter.operator, filter.value, index)}
+        <div
+          className='block-filter-condition__delete'
+          onClick={e => {
+            e.stopPropagation()
+            this.deleteFilter(index)
+          }}
+        >
           <Icon name='delete' />
         </div>
       </div>
@@ -166,7 +170,7 @@ export default class ConditionFilterTool extends Component {
           style={{ width: '120px' }}
           data={options}
           value={operator}
-          onChange={value => this.changeOperator(value, index)}
+          onChange={(selectedItems, changedItem) => this.changeOperator(changedItem, index)}
         />
       </div>
     )
@@ -176,42 +180,49 @@ export default class ConditionFilterTool extends Component {
     if (type === 'number') {
       return [
         {
-          name: '小于',
+          title: '小于',
           id: 'lt'
-        }, {
-          name: '小于等于',
+        },
+        {
+          title: '小于等于',
           id: 'lte'
-        }, {
-          name: '大于',
+        },
+        {
+          title: '大于',
           id: 'gt'
-        }, {
-          name: '大于等于',
+        },
+        {
+          title: '大于等于',
           id: 'gte'
-        }, {
-          name: '等于',
+        },
+        {
+          title: '等于',
           id: 'eq'
         }
       ]
     } else if (type === 'string') {
       return [
         {
-          name: '包含',
+          title: '包含',
           id: 'include'
-        }, {
-          name: '不包含',
+        },
+        {
+          title: '不包含',
           id: 'exclude'
-        }, {
-          name: '为空',
+        },
+        {
+          title: '为空',
           id: 'empty'
-        }, {
-          name: '不为空',
+        },
+        {
+          title: '不为空',
           id: 'no-empty'
         }
       ]
     } else if (type === 'enum') {
       return [
         {
-          name: '等于',
+          title: '等于',
           id: 'eq'
         }
       ]
@@ -235,26 +246,21 @@ export default class ConditionFilterTool extends Component {
   }
 
   render () {
-    const {
-      filters
-    } = this.parent().state
+    const { filters } = this.parent().state
 
     return (
       <div className='block-filter-tool__menu block-filter-tool__menu--condition block-filter-condition'>
-        {
-          filters.length === 0 &&
-          <div className='block-filter-condition__text'>
-            筛选条件为空
-          </div>
-        }
-        {
-          filters.length > 0 &&
-          <div className='block-filter-condition__items'>
-            {this.renderFilters()}
-          </div>
-        }
-        <a className='block-filter-condition__add' href='javascript: void(0)' onClick={this.addFilter.bind(this)}>
-          <Icon name='plus' />增加条件
+        {filters.length === 0 && <div className='block-filter-condition__text'>筛选条件为空</div>}
+        {filters.length > 0 && (
+          <div className='block-filter-condition__items'>{this.renderFilters()}</div>
+        )}
+        <a
+          className='block-filter-condition__add'
+          href='javascript: void(0)'
+          onClick={this.addFilter.bind(this)}
+        >
+          <Icon name='plus' />
+          增加条件
         </a>
       </div>
     )
