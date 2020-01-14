@@ -406,7 +406,8 @@ export default class DataFilter extends Component {
           this.setState({ page: page }, () => {
             this.fetchDatas(this.props)
           })
-        }
+        },
+        ...((table && table.pagination) || {})
       }
     }
 
