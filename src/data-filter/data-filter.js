@@ -150,7 +150,8 @@ export default class DataFilter extends Component {
       params,
       url,
       onFetched,
-      fetchDatas
+      fetchDatas,
+      withCredentials = false
     } = props
     const {
       page
@@ -166,6 +167,7 @@ export default class DataFilter extends Component {
       })
     } else {
       axios.get(url, {
+        withCredentials,
         params: {
           page,
           ...params,
