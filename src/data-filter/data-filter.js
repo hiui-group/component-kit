@@ -110,7 +110,7 @@ export default class DataFilter extends Component {
     if (this.props.columns.length > 0) {
       const filteredColumns = this.filterColumns(this.props.columns)
 
-      this.props.setState({ filteredColumns })
+      this.setState({ filteredColumns })
     }
     this.fetchDatas(this.props)
     window.addEventListener('click', this.hidePopperHandel)
